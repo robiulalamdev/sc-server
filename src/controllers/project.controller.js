@@ -3,6 +3,7 @@ const catchAsync = require('../utils/catchAsync');
 const { projectService } = require('../services');
 const Notification = require('../models/notification.modal');
 const Project = require('../models/project.model');
+const { createNewActivity } = require('../services/activity.service');
 
 const addProject = catchAsync(async (req, res) => {
   const project = await projectService.createProject(req.user._id, req.body);
@@ -32,8 +33,9 @@ const updateProject = catchAsync(async (req, res) => {
   }
 
   if (notificationData?.type) {
-    await await Notification.create(notificationData);
+    await Notification.create(notificationData);
   }
+  await createNewActivity(req.user, { status: req.body.status });
   // const result = await  notificationService.createNotification(req.body)
   res.status(httpStatus.CREATED).send({ message: 'Project updated successfully!', success: true, data: result });
 });
