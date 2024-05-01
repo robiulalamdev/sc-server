@@ -36,7 +36,7 @@ module.exports = {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
   mongoose: {
-    url: envVars.MONGODB_URL + (envVars.NODE_ENV === 'test' ? '-test' : '')
+    url: envVars.MONGODB_URL + (envVars.NODE_ENV === 'test' ? '-test' : ''),
   },
   jwt: {
     secret: envVars.JWT_SECRET,
@@ -56,5 +56,5 @@ module.exports = {
     },
     from: envVars.EMAIL_FROM,
   },
-  vimeoAccessToken: envVars.VIMEO_ACCESS_TOKEN
+  vimeoAccessToken: envVars.VIMEO_ACCESS_TOKEN,
 };

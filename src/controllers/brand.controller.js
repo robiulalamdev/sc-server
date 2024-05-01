@@ -54,6 +54,12 @@ const getAllBrandKits = catchAsync(async (req, res) => {
   res.status(httpStatus.OK).send({ message: 'Brand Kit fetched successfully!', success: true, data: result });
 });
 
+const getAllBrandKitsByUser = catchAsync(async (req, res) => {
+  const result = await brandKitService.getAllBrandKitsByUserId(req.user?._id);
+
+  res.status(httpStatus.OK).send({ message: 'Brand Kit fetched successfully!', success: true, data: result });
+});
+
 const getBrandKitInfo = catchAsync(async (req, res) => {
   const result = await brandKitService.getBrandKitInfo(req.params.id);
 
@@ -82,4 +88,5 @@ module.exports = {
   getAllBrandKits,
   updateBrandKit,
   deleteBrandKit,
+  getAllBrandKitsByUser,
 };
