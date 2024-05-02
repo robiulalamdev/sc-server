@@ -149,6 +149,7 @@ const getAllProjectsInfo = async (query) => {
     .populate({ path: 'creator', select: '-password' })
     .populate({ path: 'editor', select: '-password' })
     .populate({ path: 'exportedUrl' })
+    .populate({ path: 'brandKit' })
     .populate([
       {
         path: 'files',
