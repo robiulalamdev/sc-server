@@ -1,13 +1,13 @@
 const express = require('express');
 const { brandKitController } = require('../../controllers');
-const { brandUpload, handleMulterError } = require('../../config/multer');
 const { isAuth } = require('../../middlewares/testAuth');
+const { handleMulterError, uploadS3 } = require('../../config/multer');
 
 const router = express.Router();
 
 // isAuth - middleware is required here
 
-router.post('/', isAuth, brandUpload.any(), handleMulterError, brandKitController.createBrandKit);
+router.post('/', isAuth, uploadS3.any(), handleMulterError, brandKitController.createBrandKit);
 router.get('/', brandKitController.getAllBrandKits);
 router.get('/my-kits', isAuth, brandKitController.getAllBrandKitsByUser);
 router.get('/:id', brandKitController.getBrandKitInfo);
